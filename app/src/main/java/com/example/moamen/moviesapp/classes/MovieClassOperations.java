@@ -13,7 +13,6 @@ import io.realm.RealmResults;
 public class MovieClassOperations {
 
     Realm realm;
-    MovieClass realmTest;
     RealmResults<MovieClass> result;
     Context context;
 
@@ -24,7 +23,6 @@ public class MovieClassOperations {
 
     public void insert(Long ID , String Title , String Poster)
     {
-        result = realm.where(MovieClass.class).findAll();
                 realm.beginTransaction();
                 MovieClass data = new MovieClass(ID , Poster , Title );
                 realm.copyToRealm(data);

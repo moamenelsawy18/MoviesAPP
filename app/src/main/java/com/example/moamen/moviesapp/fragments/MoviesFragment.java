@@ -30,9 +30,6 @@ public class MoviesFragment extends Fragment {
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
     ArrayList<MovieClass> movieClasses = new ArrayList<MovieClass>();
-    Long Movie_ID;
-    String title;
-    String poster;
     MovieClassOperations movieClassOperations;
 
     public MoviesFragment() {
@@ -55,6 +52,7 @@ public class MoviesFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_movies, container, false);
 
         movieClassOperations = new MovieClassOperations(getActivity());
+
         preferences = getActivity().getSharedPreferences("Show" , Context.MODE_PRIVATE);
         editor = preferences.edit();
 
@@ -98,11 +96,9 @@ public class MoviesFragment extends Fragment {
         int id = item.getItemId();
 
 
-
         if (id == R.id.popular)
         {
             editor.putInt("viewby",0);
-            editor.apply();
 
             movieParsing = new MovieParsing(getActivity() , recyclerView);
             movieParsing.SendjsonRequest(KeysJason.PobularURL);
@@ -111,7 +107,6 @@ public class MoviesFragment extends Fragment {
         else if(id == R.id.rated)
         {
             editor.putInt("viewby",1);
-            editor.apply();
 
             movieParsing = new MovieParsing(getActivity() , recyclerView);
             movieParsing.SendjsonRequest(KeysJason.RatedURL);
@@ -120,12 +115,13 @@ public class MoviesFragment extends Fragment {
         else if(id == R.id.favo)
         {
             editor.putInt("viewby",2);
-            editor.apply();
 
             movieClasses = movieClassOperations.retrive();
             recyclerView.setAdapter(new MovieAdapter(getActivity() , movieClasses));
 
         }
+
+        editor.apply();
         return super.onOptionsItemSelected(item);
 
     }

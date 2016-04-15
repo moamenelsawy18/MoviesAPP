@@ -35,8 +35,6 @@ import java.util.ArrayList;
 public class MoviesDetailsFragment extends Fragment {
 
     RequestQueue requestQueue;
-    Context context;
-    MovieClass movieClass ;
     long ID;
     String title;
     String poster1;

@@ -18,9 +18,10 @@ import java.util.ArrayList;
  * Created by MoaMeN on 3/24/2016.
  */
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.viewHolder> {
+
     public LayoutInflater layoutInflater;
     ArrayList<MovieClass> arrayList;
-    ClickCallback callback;
+    Click click;
     Context context;
 
 
@@ -28,7 +29,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.viewHolder> 
         this.arrayList = arrayList;
         layoutInflater= LayoutInflater.from(context);
         this.context = context;
-        callback = (ClickCallback) context;
+        click = (Click) context;
     }
 
     @Override
@@ -62,7 +63,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.viewHolder> 
                 @Override
                 public void onClick(View v) {
 
-                    callback.onMovieCardClicked(arrayList.get(getPosition()).getId(),
+                    click.onClick(arrayList.get(getPosition()).getId(),
                             arrayList.get(getPosition()).getTitle(),arrayList.get(getPosition()).getPoster());
 
 
@@ -78,9 +79,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.viewHolder> 
         }
     }
 
-    public interface ClickCallback {
+    public interface Click {
 
-        void onMovieCardClicked(long id , String title , String poster);
+        void onClick(long id , String title , String poster);
 
 
     }

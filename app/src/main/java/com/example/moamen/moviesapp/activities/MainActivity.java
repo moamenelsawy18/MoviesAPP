@@ -8,25 +8,20 @@ import com.example.moamen.moviesapp.adapters.MovieAdapter;
 import com.example.moamen.moviesapp.fragments.MoviesDetailsFragment;
 import com.example.moamen.moviesapp.R;
 
-public class MainActivity extends AppCompatActivity implements MovieAdapter.ClickCallback {
+public class MainActivity extends AppCompatActivity implements MovieAdapter.Click {
 
     private boolean twoPane;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        MoviesFragment MF = new MoviesFragment();
-//        getSupportFragmentManager()
-//                .beginTransaction()
-//                .replace(R.id.ma , MF)
-//                .commit();
 
         twoPane = findViewById(R.id.movie_detail_fragment) != null;
 
     }
 
     @Override
-    public void onMovieCardClicked(long id , String title , String poster) {
+    public void onClick(long id , String title , String poster) {
 
 
         Bundle b = new Bundle();
